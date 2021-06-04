@@ -178,16 +178,17 @@ header {
   align-items: center;
   flex-wrap: wrap;
   width: auto; */
-  padding: 1rem;
+  padding: 0.5rem;
   
 }
 
 .header-links a {
   float: left;
   text-align: center;
-  color: #ffffff;
+  color: black;
   text-decoration: none;
   padding: 0.75rem;
+  margin-right:1rem;
   margin-left: auto;
 }
 

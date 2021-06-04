@@ -1,6 +1,7 @@
 import './App.css';
 import {BrowserRouter, Link, Route} from 'react-router-dom';
 import HomeScreen from './Screens/HomeScreen';
+import UploadScreen from './Screens/UploadScreen';
 
 
 const openMenu = () => {
@@ -24,74 +25,16 @@ function App(props) {
         </button>
       </div>
       <div className="logo">
-        <Link to="/"><img src="cartoonhub-logo.png" className="main-com-logo" alt="AtranZ" font-color="white"/></Link>
+        <Link to="/"><img src="https://cartoonhub.s3.ap-south-1.amazonaws.com/cartoonhub-logo.png" className="main-com-logo" alt="Cartoon Hub" font-color="white"/></Link>
         </div>
 
-        {/* <div className="header-links">
-            {/* <a href="/cart">
-            <span>
-              <i className='fa fa-shopping-bag'></i>
-            </span>
-             &nbsp;
-              My Bag
-              {cartItems.length > 0 && (
-                <span className="badge">{cartItems.length}</span>
-              )}
-            
-            </a> */}
-             {/* {userInfo ? (
-              <Link to="/cart"> 
-              <span>
-              <i className='fa fa-shopping-bag'></i>
-              </span>
-              &nbsp;My Bag              
-              {cartItems.length > 0 && (
-                <span className="badge">{cartItems.length}</span>
-              )}
-              </Link>
-            ) : (
-              <Link to="/signin">
-              <span>
-              <i className='fa fa-shopping-bag'></i>
-            </span>
-             &nbsp;My Bag</Link>
-            )} */}
-            
-            {/* {userInfo ? (
-              <div className="dropdown">
-                <Link to="/profile">
-                  {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
-                </Link>
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/profile">My Profile</Link>
-                  </li>
-
-                  <li>
-                    <Link to="/orderhistory">My Orders</Link>
-                  </li>
-
-                  <li>
-                    <Link to="/" onClick={handleLogout} >Logout</Link>
-                  </li>
-
-                </ul>
-              </div>
-            )  : (
-              <Link to="/signin">Sign In</Link>
-            )}
-            {userInfo && userInfo.isAdmin && (
-              <div className="dropdown">
-                <a href="#">Admin</a>
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/orders">Orders</Link>
-                    <Link to="/products">Products</Link>
-                  </li>
-                </ul>
-              </div>
-            )}
-          </div> */}
+        <div className="header-links">
+          <ul>
+          <li>
+            <Link to="/signin">Sign In</Link>
+          </li>
+          </ul>
+        </div>
 
     </header> 
     <aside className = "sidebar">
@@ -123,8 +66,8 @@ function App(props) {
 
       
             
-            <Route path="/category/:id" component={HomeScreen} />
-            
+            <Route path="/" exact={true} component={HomeScreen} />
+            <Route path="/upload" component={UploadScreen}/>
             
             
             
