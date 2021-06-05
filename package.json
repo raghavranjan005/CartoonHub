@@ -18,10 +18,13 @@
   },
   "homepage": "https://github.com/raghavranjan005/CartoonHub#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "dotenv": "^10.0.0",
+    "dropzone": "^5.9.2",
     "express": "^4.17.1",
     "mongoose": "^5.12.13",
-    "node-modules": "^1.0.1"
+    "node-modules": "^1.0.1",
+    "react-dropzone": "^11.3.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",
