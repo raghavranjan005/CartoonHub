@@ -3,6 +3,9 @@ import {BrowserRouter, Link, Route} from 'react-router-dom';
 import HomeScreen from './Screens/HomeScreen';
 import UploadScreen from './Screens/UploadScreen';
 import RegisterScreen from './Screens/RegisterScreen';
+import SigninScreen from './Screens/SigninScreen';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from './actions/userActions';
 
 
 const openMenu = () => {
@@ -12,9 +15,16 @@ const closeMenu = () => {
   document.querySelector('.sidebar').classList.remove('open');
 };
 
+
 function App(props) {
 
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+  const dispatch = useDispatch();
 
+  const handleLogout = () => {
+    dispatch(logout());
+  }
   return (
 
     <BrowserRouter>
@@ -32,7 +42,24 @@ function App(props) {
         <div className="header-links">
           <ul>
           <li>
-            <Link to="/signin">Sign In</Link>
+          {userInfo ? (
+              <div className="dropdown">
+                <Link to="/dashboard">
+                  {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
+                </Link>
+                <ul className="dropdown-content">
+                  <li>
+                    <Link to="/upload">Upload Video</Link>
+                  </li>
+                  <li>
+                    <Link to="/" onClick={handleLogout} >Logout</Link>
+                  </li>
+
+                </ul>
+              </div>
+            )  : (
+              <Link to="/signin">Sign In</Link>
+            )}
           </li>
           </ul>
         </div>
@@ -70,6 +97,7 @@ function App(props) {
             <Route path="/" exact={true} component={HomeScreen} />
             <Route path="/upload" component={UploadScreen}/>
             <Route path="/register" component={RegisterScreen}/>
+            <Route path="/signin" component={SigninScreen}/>
             
             
             

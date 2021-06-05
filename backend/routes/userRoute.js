@@ -2,6 +2,7 @@ import express from 'express';
 import User from '../models/userModel';
 import Video from '../models/videoModel';
 import bcrypt, { compareSync } from 'bcryptjs';
+import { getToken, isAuth } from '../util';
 
 const router = express.Router();
 
@@ -37,5 +38,34 @@ router.post('/register', async (req, res) => {
     }
           
   });
+
+
+
+  router.post('/signin', async (req, res) => {
+
+    try {
+    
+        const signinUser = await User.findOne({ email: req.body.email });
+        if (signinUser) {
+          if (bcrypt.compareSync(req.body.password, signinUser.password)) {
+          
+            return res.send({
+            _id: signinUser.id,
+            name: signinUser.name,
+            email: signinUser.email,
+            mobile:signinUser.mobile,
+            isAdmin: signinUser.isAdmin,
+            token: getToken(signinUser),
+            });
+          }
+        }
+          return res.status(401).send({ message: 'Invalid Email or Password.' });
+      
+    } catch (error) {
+        return res.send(error);
+    }
+      
+    });
+    
 
 export default router;

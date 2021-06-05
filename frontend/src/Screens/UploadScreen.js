@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
+
 
 const openForm = () => {
   document.getElementById("myForm").style.display = "block";
@@ -18,6 +20,11 @@ window.onclick = function(event) {
 
 function UploadScreen(props) {
 
+  const userSignin = useSelector(state => state.userSignin);
+  const { loading, userInfo, error } = userSignin;
+
+    if(!userInfo)
+      props.history.push("/signin");
 
     return (
 

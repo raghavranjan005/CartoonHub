@@ -16,9 +16,9 @@ function RegisterScreen(props){
     const userRegister = useSelector(state => state.userRegister);
     const { loading, flag, error } = userRegister;
 
-    // const redirect = props.location.search
-    // ? props.location.search.split('=')[1]
-    // : '/';
+    const redirect = props.location.search
+    ? props.location.search.split('=')[1]
+    : '/';
 
     const dispatch = useDispatch();
     
@@ -29,6 +29,10 @@ function RegisterScreen(props){
 
         }
       }, [flag]);
+    
+    useEffect(() => {
+        props.history.push(redirect);
+    },[redirect]);
 
     // //console.log(User);
     // //console.log("hello");

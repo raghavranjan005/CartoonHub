@@ -817,21 +817,25 @@ input {
 .dropdown {
   display: inline-block;
   position: relative;
+  margin-right: 3rem;
+  opacity: 0.8;
 }
 .dropdown-content {
   position: absolute;
   display: none;
   right: 0;
-  min-width: 12rem;
-  padding: 1rem;
+  min-width:15rem;
+  padding: 2rem;
   z-index: 1;
-  background-color: #203040;
+  background-color:white;
   margin: 0;
   margin-top: 3rem;
   border-radius: 0.5rem;
 }
 .dropdown:hover .dropdown-content {
   display: block;
+  opacity: 0.62;
+  border: 1px solid gray;
 }
 
 /* filter */
