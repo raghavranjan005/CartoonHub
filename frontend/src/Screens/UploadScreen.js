@@ -27,7 +27,7 @@ function UploadScreen(props) {
           <img className="upload-cartoon" src="https://cartoonhub.s3.ap-south-1.amazonaws.com/upload-video.png"></img>
           <p className="card-box-p">Create, Upload and publish a video<br></br> to get started.</p>
 
-          <button class="open-button" onClick={() => openForm()}>Upload Video</button>
+          <button class="open-button" onClick={() => openForm()}>UPLOAD VIDEO</button>
         </div>
 
         <div class="form-popup" id="myForm">
@@ -44,10 +44,10 @@ function UploadScreen(props) {
                   <input type="file"></input>
                   </label>
                   <p className="card-box-p"><br></br>Drag and drop your video file to upload </p>
-                  <button className="open-button">Enter File</button>
+                  <button className="open-button-2">SELECT FILE</button>
                   
               
-              
+              <p className="card-box-p-2">Uploaded Videos will be public as of now. We will soon come up with private section.</p>
 
 
               </form>

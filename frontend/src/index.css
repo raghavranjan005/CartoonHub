@@ -1097,10 +1097,20 @@ input[type="checkbox"] {
   /* margin-left: 82%; */
 }
 
+.open-button-2 {
+  background-color: rgb(29, 101, 255);
+  color:white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* margin-left: 82%; */
+}
+
 .open-button:hover{
   box-shadow: 2px 2px 2px 2px rgb(255, 71, 71);
   /* margin-left: 82%; */
 }
+
 
 /* The popup form - hidden by default */
 .form-popup {
@@ -1127,6 +1137,7 @@ input[type="checkbox"] {
   padding: 20px;
   border: 1px solid #888;
   width: 60%;
+  border-radius: 5px;
 }
 
 /* Full-width input fields */
@@ -1282,7 +1293,7 @@ input[type="checkbox"] {
   padding:4rem;
   margin-left: 38.5rem;
   margin-right: auto;
-  margin-top: 16rem;
+  margin-top: 12rem;
   
 }
 
@@ -1317,6 +1328,16 @@ input[type="checkbox"] {
   align-items: center;
   color: gray;
 }
+
+.card-box-p-2{
+  font-size: 11px;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  color: gray;
+  margin-top:10rem;
+}
+
 
 .close {
   color: #aaaaaa;
