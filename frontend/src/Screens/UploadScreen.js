@@ -19,7 +19,7 @@ function UploadScreen(props) {
 
         <BrowserRouter>
         <div className="row center large">
-            <h1 className="large"><i className="fa fa-upload"></i> Upload Video</h1>
+            <h1 className="large"> Dashboard</h1>
         </div>
 
         <div class="card-box">
@@ -34,22 +34,20 @@ function UploadScreen(props) {
                 <ul>
               </ul>
               <form  class="form-container-pop" >
-              <span class="close" onClick={() => closeForm()}>&times;</span>
-              <h1>Add Coupons</h1>
-
-              <label for="couponCode"><b>Coupon Code</b></label> &nbsp;
-              <input type="text" id="couponCode" />
-
-              <br></br><br></br>
-              <label for="discount"><b>Discount amount</b></label> &nbsp;
-              <input type="number" id="discount" />
-              <br></br><br></br>
-              <label for="couponUsers"><b>Add Email Id of users</b></label>
-              <input  id="couponUsers"/> &nbsp;
-              <button type="button">Add</button>
-              <br></br><br></br>
-
-              <button type="submit" class="btn">Submit</button>
+                <div className="pop-up-header">
+                <span class="close" onClick={() => closeForm()}>&times;</span>
+              <h2>Upload Video</h2>
+              </div>
+              
+                <label className="upload-logo">
+                  <i className="fa fa-upload"></i>
+                  <input type="file"></input>
+                  </label>
+                  <p className="card-box-p"><br></br>Drag and drop your video file to upload </p>
+                  <button className="open-button">Enter File</button>
+                  
+              
+              
 
 
               </form>

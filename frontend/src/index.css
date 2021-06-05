@@ -71,6 +71,17 @@ body {
 }
 .fa-bars{
   color: black;
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+.fa-upload{
+  font-size: 6rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color:gray;
 }
 
 .fa-addition{ 
@@ -184,8 +195,7 @@ header {
   align-items: center;
   flex-wrap: wrap;
   width: auto; */
-  padding: 0.5rem;
-  
+  padding-left: 1.5rem;  
 }
 
 .header-links a {
@@ -204,6 +214,7 @@ header {
   max-width: 33rem;
   padding-left: 1rem;
   vertical-align: middle;
+  padding-top: 0.2rem;
 }
 
 .brand a {
@@ -1096,7 +1107,7 @@ input[type="checkbox"] {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  padding-top: 80px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -1111,11 +1122,11 @@ input[type="checkbox"] {
 
 /* Add styles to the form container */
 .form-container-pop {
-  background-color: #fefefe;
+  background-color: white;
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 60%;
 }
 
 /* Full-width input fields */
@@ -1263,18 +1274,18 @@ input[type="checkbox"] {
       justify-content: 'center'
      }
 
-.upload-box{
+.upload-logo{
+  display: inline-block;
+  background-color: rgb(255, 254, 254);
+  border: 1px solid rgb(255, 254, 254);
+  border-radius: 50%;
+  padding:4rem;
+  margin-left: 38.5rem;
+  margin-right: auto;
+  margin-top: 16rem;
   
-  background-color: white;
-  border-style: soldi;
-  border-width: 5px;
-  border-color:rgb(224, 224, 224) ;
-  margin-left: 40rem;
-  padding-bottom: 20rem;
-  padding-right: 12rem;
-  color:white;
-  background-image: url('https://cartoonhub.s3.ap-south-1.amazonaws.com/cartoonhub-logo.png');
 }
+
 
 
 .card-box{
@@ -1320,3 +1331,19 @@ input[type="checkbox"] {
   text-decoration: none;
   cursor: pointer;
 }
+
+.upload-button{
+  display: block;
+}
+
+input[type="file"]{
+  display: none;
+}
+
+.pop-up-header h2{
+  font-size: 20px;
+  margin-top: 0;
+  border-bottom: 2px solid rgb(243, 235, 235);
+  border-bottom-width: 100%;
+}
+
