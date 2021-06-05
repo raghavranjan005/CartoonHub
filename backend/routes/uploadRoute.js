@@ -3,6 +3,8 @@ import multerS3 from 'multer-s3';
 import multer from 'multer';
 import aws from 'aws-sdk';
 import config from '../config';
+import { isAuth } from '../util';
+import Video from '../models/videoModel'
 
 
 const router = express.Router();
@@ -22,7 +24,43 @@ const storageS3 = multerS3({
   },
 });
 const uploadS3 = multer({ storage: storageS3 });
+
 router.post('/s3', uploadS3.single('video'), (req, res) => {
   return res.send(req.file.location);
 });
-export default router;
+
+router.post('/s3-2', uploadS3.single('image'), (req, res) => {
+  return res.send(req.file.location);
+});
+
+
+
+router.post('/',isAuth, async (req, res) => {
+
+    try {
+
+      const uploadVideo = new Video({
+        title:req.body.title,
+        videoURL:req.body.video,
+        description:req.body.description,
+        thumbnail:req.body.thumbnail,
+        user:req.user._id
+      });
+
+      const newVideo = await uploadVideo.save();
+      if (newVideo) {
+      return res
+        .status(200)
+        .send({ message: 'New Video Uploaded', data: newVideo });
+    }
+    return res.status(404).send({ message: ' Error in uploading Video.' });
+      
+    } catch (error) {
+      res.send(error);
+    }
+      
+    
+  });
+  
+
+  export default router;

@@ -7,6 +7,9 @@ import {
     userRegisterReducer,
   } from './reducers/userReducers';
 
+  import{
+    videoUploadReducer
+  } from './reducers/videoReducers';
 
   const userInfo = Cookie.getJSON('userInfo') || null;
   const initialState = {
@@ -16,6 +19,7 @@ import {
   const reducer = combineReducers({
     userSignin: userSigninReducer,
     userRegister: userRegisterReducer,
+    videoUpload : videoUploadReducer,
   });
   const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const store = createStore(

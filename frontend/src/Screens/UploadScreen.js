@@ -2,6 +2,9 @@ import React, { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
+import { uploadVideo } from '../actions/videoActions';
 
 
 const openForm = () => {
@@ -29,11 +32,38 @@ window.onclick = function(event) {
 function UploadScreen(props) {
 
   const [video, setVideo] = useState('');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
+  const [uploading2, setUploading2] = useState(false);
+  const [thumbnail, setThumbnail] = useState('');
 
   const userSignin = useSelector(state => state.userSignin);
   const { loading, userInfo, error } = userSignin;
 
+  const uploaded = useSelector(state => state.videoUpload);
+  const { loadingVid, success, errorVid } = uploaded;
+
+  const uploadThumbnailHandler = (e) => {
+    const file = e.target.files[0];
+    const bodyFormData = new FormData();
+    bodyFormData.append('image', file);
+    setUploading2(true);
+    axios
+      .post('/api/uploads/s3-2', bodyFormData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((response) => {
+        setThumbnail(response.data);
+        setUploading2(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setUploading2(false);
+      });
+  };
 
   const uploadFileHandler = (e) => {
     const file = e.target.files[0];
@@ -58,12 +88,22 @@ function UploadScreen(props) {
       });
   };
 
+  const dispatch = useDispatch();
+
+  const submitHandler = (e)=>{
+    e.preventDefault();
+    dispatch(uploadVideo(title,video,description, thumbnail));
+  };
+
+
     if(!userInfo)
       props.history.push("/signin");
 
     return (
 
         <BrowserRouter>
+        {loading && <LoadingBox></LoadingBox>}
+        {error && <MessageBox>{error}</MessageBox>}
         <div className="row center large">
             <h1 className="large"> Dashboard</h1>
         </div>
@@ -91,6 +131,7 @@ function UploadScreen(props) {
                   </label>
                   <p className="card-box-p"><br></br>Drag and drop your video file to upload </p>
                   <button className="open-button-2">SELECT FILE</button>
+                  {uploading && <LoadingBox>Uploading Video ....</LoadingBox>}
                   
               
               <p className="card-box-p-2">Uploaded Videos will be public as of now. We will soon come up with private section.</p>
@@ -101,24 +142,33 @@ function UploadScreen(props) {
        
 
       
-      <div class="form-popup" id="myForm2">
+      <div class="form-popup" id="myForm2" onSubmit={submitHandler}>
                 <ul>
               </ul>
               <form  class="form-container-pop" >
                 <div className="pop-up-header">
                 <span class="close" onClick={() => closeForm2()}>&times;</span>
+                {loadingVid && <LoadingBox></LoadingBox>}
+                {errorVid && <MessageBox>{error}</MessageBox>}
               <h2>Upload Video</h2>
               </div>
-              
-              <form >
                 <ul>
                   <li>
-                    <label>Video URL</label>
-                    <input type="text" name="video" value={video} onChange={(e) => setVideo(e.target.value)} ></input>
+                    <label>Title</label><br></br>
+                    <input type="text" name="title" value={title} required onChange={(e) => setTitle(e.target.value)} ></input>
                   </li>
-                  
+                  <li>
+                  <label>Description</label><br></br>
+                   <textarea placeholder="Description" rows="6" cols="50" id="description" value={description} onChange={(e) => {setDescription(e.target.value)}} />
+                  </li>
+                  <li>
+                    <label className="upload-logo">Thumbnail
+                    <input type="file" onChange={uploadThumbnailHandler}></input>
+                    </label>
+                  </li>
+                  {uploading2 && <LoadingBox>Uploading Thumbnail ....</LoadingBox>}
                 </ul>
-                </form>
+                <button type="submit">Submit</button>
               
               <p className="card-box-p-2">Uploaded Videos will be public as of now. We will soon come up with private section.</p>
 
