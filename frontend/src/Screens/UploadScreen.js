@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import Dropzone from 'react-dropzone';
 import axios from 'axios';
 
 const openForm = () => {

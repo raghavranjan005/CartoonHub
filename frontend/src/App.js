@@ -2,6 +2,7 @@ import './App.css';
 import {BrowserRouter, Link, Route} from 'react-router-dom';
 import HomeScreen from './Screens/HomeScreen';
 import UploadScreen from './Screens/UploadScreen';
+import RegisterScreen from './Screens/RegisterScreen';
 
 
 const openMenu = () => {
@@ -68,6 +69,7 @@ function App(props) {
             
             <Route path="/" exact={true} component={HomeScreen} />
             <Route path="/upload" component={UploadScreen}/>
+            <Route path="/register" component={RegisterScreen}/>
             
             
             
