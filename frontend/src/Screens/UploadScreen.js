@@ -11,6 +11,11 @@ const closeForm = () => {
   document.getElementById("myForm").style.display = "none";
 }
 
+window.onclick = function(event) {
+  if (event.target == document.getElementById("myForm")) {
+    document.getElementById("myForm").style.display = "none";
+  }
+}
 
 function UploadScreen(props) {
 
