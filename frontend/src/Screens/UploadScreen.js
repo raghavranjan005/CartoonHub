@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 import LoadingBox from '../components/LoadingBox';
+import CustomLoadingBox from '../components/CustomLoadingBox';
 import MessageBox from '../components/MessageBox';
 import { uploadVideo } from '../actions/videoActions';
 
@@ -131,7 +132,7 @@ function UploadScreen(props) {
                   </label>
                   <p className="card-box-p"><br></br>Drag and drop your video file to upload </p>
                   <button className="open-button-2">SELECT FILE</button>
-                  {uploading && <LoadingBox>Uploading Video ....</LoadingBox>}
+                  {uploading && <CustomLoadingBox>Uploading Video ....</CustomLoadingBox>}
                   
               
               <p className="card-box-p-2">Uploaded Videos will be public as of now. We will soon come up with private section.</p>
@@ -167,7 +168,7 @@ function UploadScreen(props) {
                     <input type="file" onChange={uploadThumbnailHandler}></input>
                     </label>
                   </li>
-                  {uploading2 && <LoadingBox>Uploading Thumbnail ....</LoadingBox>}
+                  {uploading2 && <CustomLoadingBox>Uploading Thumbnails....</CustomLoadingBox>}
                 </ul>
                 <button className="open-button-2" type="submit">Upload</button>
               
