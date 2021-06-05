@@ -162,15 +162,15 @@ function UploadScreen(props) {
                    <textarea placeholder="Description" rows="6" cols="50" id="description" value={description} onChange={(e) => {setDescription(e.target.value)}} />
                   </li>
                   <li>
-                    <label className="upload-logo">Thumbnail
+                    <label className="upload-thumbnail"><i className="fa fa-plus" ></i>
+                    <br></br><p className="thumb-p">Thumbnail</p>
                     <input type="file" onChange={uploadThumbnailHandler}></input>
                     </label>
                   </li>
                   {uploading2 && <LoadingBox>Uploading Thumbnail ....</LoadingBox>}
                 </ul>
-                <button type="submit">Submit</button>
+                <button className="open-button-2" type="submit">Upload</button>
               
-              <p className="card-box-p-2">Uploaded Videos will be public as of now. We will soon come up with private section.</p>
 
 
               </form>

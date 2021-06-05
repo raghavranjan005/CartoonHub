@@ -18,6 +18,12 @@ body {
 .fa-heart {
   color: red;
 }
+
+.fa-plus{
+  color:gray;
+  font-size: 25px;
+  margin-left:35%
+}
 .fa-money{
   color:rgb(134, 211, 18);
   font-size: 3rem;
@@ -1301,6 +1307,24 @@ input[type="checkbox"] {
   
 }
 
+.upload-thumbnail{
+  display: inline-block;
+  background-color: rgb(255, 254, 254);
+  border: 1px solid rgb(255, 254, 254);
+  border-radius: 5px;
+  padding:4rem;
+  padding-top:5rem;
+  padding-left:5rem;
+  padding-right:5rem;
+  margin-left: 2rem;
+  margin-right: auto;
+  margin-top: 3rem;
+  border:2px solid white;
+  outline: 1px dashed gray;
+  outline-offset: -10px;
+  
+}
+
 
 
 .card-box{
@@ -1342,6 +1366,14 @@ input[type="checkbox"] {
   margin-top:10rem;
 }
 
+.card-box-p-3{
+  font-size: 11px;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  color: gray;
+  margin-top:2rem;
+}
 
 .close {
   color: #aaaaaa;
@@ -1372,3 +1404,7 @@ input[type="file"]{
   border-bottom-width: 100%;
 }
 
+.thumb-p{
+  font-size: 12px;
+  font-weight: lighter;
+}
