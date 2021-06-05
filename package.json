@@ -1,6 +1,5 @@
 {
   "name": "cartoonhub",
-  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,6 +18,7 @@
   "homepage": "https://github.com/raghavranjan005/CartoonHub#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^10.0.0",
     "dropzone": "^5.9.2",
     "express": "^4.17.1",

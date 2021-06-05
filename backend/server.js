@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import config from './config.js';
 import bodyParser from 'body-parser';
+import userRoute from './routes/userRoute'
 
 
 dotenv.config();
@@ -19,5 +20,7 @@ mongoose.connect(mongodbUrl, {
     useCreateIndex: true,
 
 }).catch((error)=> console.log("hehe"));
+
+app.use('/api/users', userRoute);
   
 app.listen(5000, () => {console.log("server started at http://localhost:5000")})
