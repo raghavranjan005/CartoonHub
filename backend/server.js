@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import config from './config.js';
 import bodyParser from 'body-parser';
 import userRoute from './routes/userRoute'
-
+import uploadRoute from './routes/uploadRoute';
 
 dotenv.config();
 
@@ -22,5 +22,6 @@ mongoose.connect(mongodbUrl, {
 }).catch((error)=> console.log("hehe"));
 
 app.use('/api/users', userRoute);
+app.use('/api/uploads', uploadRoute);
   
 app.listen(5000, () => {console.log("server started at http://localhost:5000")})
