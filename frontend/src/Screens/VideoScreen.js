@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import {signin} from '../actions/userActions';
 import MessageBox from '../components/MessageBox';
 import LoadingBox from '../components/LoadingBox';
-import { detailsVideo, dislikeVideo, likeVideo } from '../actions/videoActions';
+import { detailsVideo, dislikeVideo, likeVideo, addComments } from '../actions/videoActions';
 import moment from 'moment';
 
 function getIST(dateStr) {
@@ -31,6 +31,7 @@ function getIST(dateStr) {
 
 function VideoScreen(props){
 
+    const videoId = props.match.params.id;
     const dispatch = useDispatch();
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
@@ -42,6 +43,11 @@ function VideoScreen(props){
 
     const videoDislikes = useSelector((state) => state.videoDislike);
     const { dislikes, loading:LoadingDislike, error:errorDislike } = videoDislikes;
+
+    const addComment = useSelector((state) => state.addCommentVid);
+    const { data, loading:LoadingComment, error:errorComment } = addComment;
+
+    const [comment, setComment] = useState(''); 
 
     const increaseLike = (id)=>{
         if(userInfo)
@@ -59,6 +65,10 @@ function VideoScreen(props){
         }
       };
 
+    const commentSubmit = (e)=>{
+        e.preventDefault();
+        dispatch(addComments(comment,videoId));
+    }
 
       
     useEffect(() => {
@@ -67,7 +77,7 @@ function VideoScreen(props){
         return () => {
           //
         };
-      }, [LoadingLike, LoadingDislike]);
+      }, [LoadingLike, LoadingDislike,data]);
 
 
     return (
@@ -102,8 +112,29 @@ function VideoScreen(props){
 
             <div className="comment">
             <img src={video.thumbnail} className="avtar"></img> &nbsp;
-            <input type="text" placeholder="Add a public comment..." className="comment-input"></input>
+            <form onSubmit={commentSubmit}>
+            <input type="text" placeholder="Add a public comment..." className="comment-input" required
+            onChange={(e) => setComment(e.target.value)}></input>
+            <button type="submit" className="comment-button">Submit</button>
+            </form>
             </div>
+
+            <div className="comment-list">
+                    {video.comments && 
+                    
+                    <ul>
+                        {video.comments.map((comm) => (
+                        <li key={comm._id}>
+                       <p><h2>{comm.name}</h2>
+                        <div>{comm.comment}</div>
+                        </p>
+                             </li>
+                            ))}
+                    </ul>
+                    }
+
+            </div>
+
         </div>
         </div>
         ):<></>}

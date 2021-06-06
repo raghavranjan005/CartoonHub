@@ -20,7 +20,7 @@ router.get('/',async(req,res)=>{
 
   router.get('/:id', async (req, res) => {
     try {
-          const video = await Video.findOne({ _id: req.params.id });
+          const video = await Video.findById(req.params.id);
           if (video) {
             video.views = video.views + 1;
             await video.save();
@@ -73,6 +73,30 @@ router.get('/',async(req,res)=>{
   
   });
 
+  router.post('/addcomment', isAuth, async (req, res) => {
+  
+    try {
+      const video = await Video.findById(req.body.videoId);
+      if(video) {
+        const comment = {
+          name: req.user.name,
+          comment: req.body.comment,
+        };
+        video.comments.push(comment);
+        const updatedVideo = await video.save();
+        return res.status(201).send({
+          data: updatedVideo,
+          message: 'Review saved successfully.',
+        });
+        } else {
+          return res.status(404).send({ message: 'Video Not Found' });
+        }
+      
+    } catch (error) {
+      return res.send(error);
+    }
+    
+  });
 
     
 

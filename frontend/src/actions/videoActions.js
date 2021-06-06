@@ -1,7 +1,7 @@
 import Axios from "axios";
 import axios from 'axios';
 import Cookie from 'js-cookie';
-import { SUCCESSVID_CHANGE, VIDEO_DETAILS_FAIL, VIDEO_DETAILS_REQUEST, VIDEO_DETAILS_SUCCESS,
+import { ADD_COMMENT_FAIL, ADD_COMMENT_SUCCESS, SUCCESSVID_CHANGE, VIDEO_DETAILS_FAIL, VIDEO_DETAILS_REQUEST, VIDEO_DETAILS_SUCCESS,
   VIDEO_DISLIKE_FAIL,
   VIDEO_DISLIKE_REQUEST,
   VIDEO_DISLIKE_SUCCESS,
@@ -92,9 +92,28 @@ const dislikeVideo = (videoId) => async (dispatch, getState) => {
   }
 };
 
+const addComments = (comment, videoId) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: ADD_COMMENT_SUCCESS});
+    const {userSignin: { userInfo }} = getState();
+        const { data } = await axios.post('/api/videos/addcomment',{comment, videoId}, {
+          headers: {
+            Authorization: 'Bearer ' + userInfo.token,
+          },
+        });
+      console.log(data)
+    dispatch({ type: ADD_COMMENT_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: ADD_COMMENT_FAIL, payload: error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message, });
+  }
+};
+
 const successVidchange = () => async(dispatch) => {
   dispatch({ type: SUCCESSVID_CHANGE, payload:false});
 }
 
 
-  export {uploadVideo, ListVideos, detailsVideo, successVidchange, likeVideo, dislikeVideo} 
+  export {uploadVideo, ListVideos, detailsVideo, successVidchange, 
+    likeVideo, dislikeVideo,addComments} 

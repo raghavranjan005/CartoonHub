@@ -8,6 +8,7 @@ import {
   } from './reducers/userReducers';
 
   import{
+    addCommentVidReducer,
     videoDetailsReducer,
     videoDislikeReducer,
     videoLikeReducer,
@@ -27,7 +28,8 @@ import {
     videoList : videoListReducer,
     videoDetails: videoDetailsReducer,
     videoLike : videoLikeReducer,
-    videoDislike : videoDislikeReducer
+    videoDislike : videoDislikeReducer,
+    addCommentVid : addCommentVidReducer
   });
   const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const store = createStore(
