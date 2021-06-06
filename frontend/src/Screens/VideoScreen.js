@@ -18,6 +18,16 @@ function getIST(dateStr) {
     
   }
 
+  function copy(text) {
+    var dummy = document.createElement("textarea");
+    document.body.appendChild(dummy);
+    dummy.value = text;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+    alert( `Copied URL = ${text}`)
+  }
+
 
 function VideoScreen(props){
 
@@ -49,8 +59,10 @@ function VideoScreen(props){
             <i className="border-bottom">
                 <i className="fa fa-thumbs-o-up"> {video.likes}&nbsp;&nbsp;</i>
                 
-             <i className="fa fa-thumbs-o-down"> {video.dislikes}</i>
+             <i className="fa fa-thumbs-o-down"> {video.dislikes}</i>&nbsp;&nbsp;
              </i>
+             <i className="fa fa-share" onClick={() => copy("http://localhost:3000/video/"+video._id)}></i> SHARE
+             
              </p>
             </div>
         </div>

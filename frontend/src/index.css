@@ -25,6 +25,13 @@ body {
   
 }
 
+.fa-share{
+  font-size:2.3rem;
+  display: inline-block;
+  margin-left:2.5rem;
+  
+}
+
 .fa-thumbs-o-down{
   font-size:2.3rem;
   padding-left: 1rem;
@@ -1453,4 +1460,8 @@ input[type="file"]{
 
 .video-details-des{
    margin-left:1rem;  
+}
+
+.share{
+  
 }
