@@ -125,9 +125,10 @@ function VideoScreen(props){
                     <ul>
                         {video.comments.map((comm) => (
                         <li key={comm._id}>
-                       <p><h2>{comm.name}</h2>
-                        <div>{comm.comment}</div>
-                        </p>
+                        
+                       <div className="comment-title"><img src={video.thumbnail} className="avtar"></img> &nbsp;&nbsp;
+                       {comm.name}</div>
+                        <div className="comment-user">{comm.comment}</div>
                              </li>
                             ))}
                     </ul>
