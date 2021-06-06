@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/raghavranjan005/CartoonHub#readme",
   "dependencies": {
+    "antd": "^4.16.1",
     "aws-sdk": "^2.922.0",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",

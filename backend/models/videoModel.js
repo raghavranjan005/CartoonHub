@@ -21,8 +21,13 @@ const videoSchema = new mongoose.Schema({
     comments:[commentSchema],
     thumbnail:{type:String},
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    views:{type:Number, default:0},
+    category:{type:Number},
+    privacy:{type:Number},
+    category:{type:String},
+    duration:{type:String},
      
-});
+  }, { timestamps: true })
 
 const videoModel = mongoose.model("Video", videoSchema);
 

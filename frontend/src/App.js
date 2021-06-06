@@ -6,6 +6,7 @@ import RegisterScreen from './Screens/RegisterScreen';
 import SigninScreen from './Screens/SigninScreen';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from './actions/userActions';
+import SearchBox from './components/SearchBox';
 
 
 const openMenu = () => {
@@ -38,7 +39,11 @@ function App(props) {
       <div className="logo">
         <Link to="/"><img src="https://cartoonhub.s3.ap-south-1.amazonaws.com/cartoonhub-logo.png" className="main-com-logo" alt="Cartoon Hub" font-color="white"/></Link>
         </div>
-
+        <ul className="filter">
+          <li>
+          <SearchBox></SearchBox>
+          </li>
+        </ul>
         <div className="header-links">
           <ul>
           <li>

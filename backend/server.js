@@ -5,6 +5,7 @@ import config from './config.js';
 import bodyParser from 'body-parser';
 import userRoute from './routes/userRoute'
 import uploadRoute from './routes/uploadRoute';
+import videoRoute from './routes/videoRoute';
 
 dotenv.config();
 
@@ -23,5 +24,6 @@ mongoose.connect(mongodbUrl, {
 
 app.use('/api/users', userRoute);
 app.use('/api/uploads', uploadRoute);
+app.use('/api/videos', videoRoute);
   
 app.listen(5000, () => {console.log("server started at http://localhost:5000")})
