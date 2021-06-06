@@ -120,6 +120,7 @@ function VideoScreen(props){
             </div>
 
             <div className="comment-list">
+                {video.comments.length === 0 && <p>There is no comment yet.</p>}
                     {video.comments && 
                     
                     <ul>
