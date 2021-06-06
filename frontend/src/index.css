@@ -19,6 +19,24 @@ body {
   color: red;
 }
 
+.fa-thumbs-o-up{
+  font-size:2.3rem;
+  display: inline-block;
+  
+}
+
+.fa-thumbs-o-down{
+  font-size:2.3rem;
+  padding-left: 1rem;
+  display: inline-block;
+}
+
+.border-bottom{
+  margin-left:45rem;
+  padding-bottom: 1rem;
+  border-bottom: 2.5px solid gray ;
+}
+
 .fa-plus{
   color:gray;
   font-size: 25px;
@@ -520,8 +538,9 @@ button.close-sidebar {
   /* flex: 0 50%; */
   flex-grow: 1;
   width: 0.4rem;
-  margin-left: 3rem;
+  margin-left: 7.2rem;
   margin-right: 3rem;
+  margin-top:1.8rem;
   padding: auto;
 }
 
@@ -1419,4 +1438,19 @@ input[type="file"]{
 .thumb-p{
   font-size: 12px;
   font-weight: lighter;
+}
+
+.views{
+  position: relative;
+  width:65%;
+  top:-15px;
+  color:gray;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgb(207, 207, 207) ;
+
+}
+
+
+.video-details-des{
+   margin-left:1rem;  
 }

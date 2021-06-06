@@ -6,6 +6,7 @@ import LoadingBox from '../components/LoadingBox';
 import CustomLoadingBox from '../components/CustomLoadingBox';
 import MessageBox from '../components/MessageBox';
 import { uploadVideo } from '../actions/videoActions';
+import {successVidchange} from '../actions/videoActions'
 
 
 const openForm = () => {
@@ -43,7 +44,7 @@ function UploadScreen(props) {
   const { loading, userInfo, error } = userSignin;
 
   const uploaded = useSelector(state => state.videoUpload);
-  const { loadingVid, success, errorVid } = uploaded;
+  const { loading:loadingVid, success:successVid, error:errorVid , newVideo} = uploaded;
 
   const uploadThumbnailHandler = (e) => {
     const file = e.target.files[0];
@@ -65,6 +66,19 @@ function UploadScreen(props) {
         setUploading2(false);
       });
   };
+
+  useEffect(() => {
+
+    if (successVid) {
+      alert("Video Uploaded Succesfully")
+      dispatch(successVidchange());
+      props.history.push("/");
+
+      }
+    return () => {
+      //
+    };
+  }, [successVid]);
 
   const uploadFileHandler = (e) => {
     const file = e.target.files[0];
@@ -150,7 +164,7 @@ function UploadScreen(props) {
                 <div className="pop-up-header">
                 <span class="close" onClick={() => closeForm2()}>&times;</span>
                 {loadingVid && <LoadingBox></LoadingBox>}
-                {errorVid && <MessageBox>{error}</MessageBox>}
+                {errorVid && <MessageBox variant="danger">{error}</MessageBox>}
               <h2>Upload Video</h2>
               </div>
                 <ul>

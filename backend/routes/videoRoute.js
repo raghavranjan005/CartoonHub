@@ -22,6 +22,8 @@ router.get('/',async(req,res)=>{
     try {
           const video = await Video.findOne({ _id: req.params.id });
           if (video) {
+            video.views = video.views + 1;
+            await video.save();
             return res.send(video);
           } else {
             return res.status(404).send({ message: 'Video Not Found.' });

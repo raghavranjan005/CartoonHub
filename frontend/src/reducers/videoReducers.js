@@ -1,14 +1,16 @@
 import Cookie from 'js-cookie';
-import { VIDEO_DETAILS_FAIL, VIDEO_DETAILS_REQUEST, VIDEO_DETAILS_SUCCESS, VIDEO_LIST_FAIL, VIDEO_LIST_REQUEST, VIDEO_LIST_SUCCESS, VIDEO_UPLOAD_FAIL, VIDEO_UPLOAD_REQUEST, VIDEO_UPLOAD_SUCCESS } from '../constants/videoConstants';
+import { SUCCESSVID_CHANGE, VIDEO_DETAILS_FAIL, VIDEO_DETAILS_REQUEST, VIDEO_DETAILS_SUCCESS, VIDEO_LIST_FAIL, VIDEO_LIST_REQUEST, VIDEO_LIST_SUCCESS, VIDEO_UPLOAD_FAIL, VIDEO_UPLOAD_REQUEST, VIDEO_UPLOAD_SUCCESS } from '../constants/videoConstants';
 
 function videoUploadReducer(state= {}, action) {
     switch (action.type) {
       case VIDEO_UPLOAD_REQUEST:
         return { loading: true };
       case VIDEO_UPLOAD_SUCCESS:
-        return { loading: false, success: true };
+        return { loading: false, success: true, newVideo:action.payload };
       case VIDEO_UPLOAD_FAIL:
         return { loading: false, error: action.payload };
+        case SUCCESSVID_CHANGE:
+          return {loading:false, flag:action.payload}
       default:
         return state;
     }
