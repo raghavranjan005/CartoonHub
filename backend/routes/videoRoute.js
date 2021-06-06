@@ -18,6 +18,20 @@ router.get('/',async(req,res)=>{
     }
   })
 
+  router.get('/:id', async (req, res) => {
+    try {
+          const video = await Video.findOne({ _id: req.params.id });
+          if (video) {
+            return res.send(video);
+          } else {
+            return res.status(404).send({ message: 'Video Not Found.' });
+          } 
+    } catch (error) {
+      return res.send(error)
+    }
+  
+  });
+
     
 
 export default router;

@@ -8,6 +8,7 @@ import {
   } from './reducers/userReducers';
 
   import{
+    videoDetailsReducer,
     videoListReducer,
     videoUploadReducer
   } from './reducers/videoReducers';
@@ -21,7 +22,8 @@ import {
     userSignin: userSigninReducer,
     userRegister: userRegisterReducer,
     videoUpload : videoUploadReducer,
-    videoList : videoListReducer
+    videoList : videoListReducer,
+    videoDetails: videoDetailsReducer
   });
   const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const store = createStore(

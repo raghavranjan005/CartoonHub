@@ -1,7 +1,7 @@
 import Axios from "axios";
 import axios from 'axios';
 import Cookie from 'js-cookie';
-import { VIDEO_LIST_FAIL, VIDEO_LIST_REQUEST, VIDEO_LIST_SUCCESS, VIDEO_UPLOAD_FAIL, VIDEO_UPLOAD_REQUEST, VIDEO_UPLOAD_SUCCESS } from "../constants/videoConstants";
+import { VIDEO_DETAILS_FAIL, VIDEO_DETAILS_REQUEST, VIDEO_DETAILS_SUCCESS, VIDEO_LIST_FAIL, VIDEO_LIST_REQUEST, VIDEO_LIST_SUCCESS, VIDEO_UPLOAD_FAIL, VIDEO_UPLOAD_REQUEST, VIDEO_UPLOAD_SUCCESS } from "../constants/videoConstants";
 
 const uploadVideo = (title,video,description,thumbnail) => async (dispatch, getState) => {
     try {
@@ -36,4 +36,19 @@ const uploadVideo = (title,video,description,thumbnail) => async (dispatch, getS
     }
 };
 
-  export {uploadVideo, ListVideos} 
+
+
+const detailsVideo = (videoId) => async (dispatch) => {
+  try {
+    dispatch({ type: VIDEO_DETAILS_REQUEST, payload: videoId });
+    const { data } = await axios.get('/api/videos/' + videoId);
+    dispatch({ type: VIDEO_DETAILS_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: VIDEO_DETAILS_FAIL, payload: error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message, });
+  }
+};
+
+
+  export {uploadVideo, ListVideos, detailsVideo} 
