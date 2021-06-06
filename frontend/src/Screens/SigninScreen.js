@@ -85,7 +85,7 @@ function SigninScreen(props){
                 </li>
 
                 <li>
-                <button><Link to={redirect === "/" ? "register" : "register?redirect=" + redirect} className="primary">Create your AtranZ account</Link></button>
+                <button><Link to={redirect === "/" ? "register" : "register?redirect=" + redirect} className="primary">Create your account</Link></button>
                 </li>
 
 

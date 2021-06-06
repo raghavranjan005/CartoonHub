@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import {register, flagchange} from '../actions/userActions';
 import MessageBox from '../components/MessageBox';
 import LoadingBox from '../components/LoadingBox';
+import axios from 'axios';
 
 
 function RegisterScreen(props){
@@ -13,12 +14,10 @@ function RegisterScreen(props){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
+    const [uploading, setUploading] = useState(false);
+    const [image, setImage] = useState('')
     const userRegister = useSelector(state => state.userRegister);
     const { loading, flag, error } = userRegister;
-
-    const redirect = props.location.search
-    ? props.location.search.split('=')[1]
-    : '/';
 
     const dispatch = useDispatch();
     
@@ -29,10 +28,6 @@ function RegisterScreen(props){
 
         }
       }, [flag]);
-    
-    useEffect(() => {
-        props.history.push(redirect);
-    },[redirect]);
 
     // //console.log(User);
     // //console.log("hello");
@@ -54,9 +49,31 @@ function RegisterScreen(props){
         if (password !== rePassword) {
           alert('Password and confirm password are not match');
         } else{
-          dispatch(register(name, email, password));
+          dispatch(register(name, email, password, image));
         }
       };
+
+      const uploadImageHandler = (e) => {
+        const file = e.target.files[0];
+        const bodyFormData = new FormData();
+        bodyFormData.append('image', file);
+        setUploading(true);
+        axios
+          .post('/api/uploads/s3-2', bodyFormData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          })
+          .then((response) => {
+            setImage(response.data);
+            setUploading(false);
+          })
+          .catch((err) => {
+            //console.log(err);
+            setUploading(false);
+          });
+      };
+
 
     return <div className="form">
         <form onSubmit={submitHandler}>
@@ -82,6 +99,16 @@ function RegisterScreen(props){
                     </label>
                     <input type="email" name="email" id="email" required onChange={(e) => setEmail(e.target.value)}></input>
                     </li>
+
+                    <li>
+                    <label>
+                        Profile pic <i className="fa fa-file"></i>
+                        <input type="file"  required onChange={uploadImageHandler}></input> &nbsp;&nbsp;
+                        <input type="text" required value={image} onChange={(e) => setImage(e.target.value)}></input>
+                        
+                    </label>
+                    
+                    </li>
                 <li>
                 <label htmlFor="password">Password</label>
                     <input type="password" id="password" name="password" required onChange={(e) => setPassword(e.target.value)}></input>
@@ -92,7 +119,7 @@ function RegisterScreen(props){
                 <label htmlFor="rePassword">Confirm Password</label>
                     <input type="Password" id="rePassword" name="rePassword" required onChange={(e) => setRePassword(e.target.value)}></input>
                 </li>
-
+                
 
                 <li>
                     <button type="submit" className="button primary">Register</button>

@@ -184,11 +184,11 @@ button.small {
   border: 0.1rem #404040 solid;
 }
 .button.primary {
-  background-color: #b396f7;
+  background-color: rgb(255, 72, 72);
   color: white;
 }
 .button.primary:hover {
-  background-color: #533696;
+  background-color: red;
 }
 .button.secondary {
   background-color: #f0f0f0;
