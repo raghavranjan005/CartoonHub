@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/',async(req,res)=>{
     try {
-      const videos = await Video.find();
+      const videos = await Video.find({}).populate('user');
       if(videos)
         return res.send(videos);
       else

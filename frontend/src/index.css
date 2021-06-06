@@ -399,7 +399,7 @@ button.close-sidebar {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  height: 85%;
 }
 
 .video-title {
@@ -419,8 +419,8 @@ button.close-sidebar {
   color:black;
   text-decoration: none;
 }
-.product-brands {
-  font-size: 1.2rem;
+.video-user {
+  font-size: 1.45rem;
   padding-left: 2%;
   color: #808080;
 }

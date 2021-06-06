@@ -51,7 +51,7 @@ function HomeScreen(props) {
                 <div className="video-title">
                   <Link to={'/video/' + video._id}>{video.title}</Link>
                 </div>
-                <span>{video.user.name} </span><br />
+                <div className="video-user">{video.user.name}</div>
 
               </div>
             </li>
