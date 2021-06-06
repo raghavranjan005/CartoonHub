@@ -1,7 +1,15 @@
 import Axios from "axios";
 import axios from 'axios';
 import Cookie from 'js-cookie';
-import { SUCCESSVID_CHANGE, VIDEO_DETAILS_FAIL, VIDEO_DETAILS_REQUEST, VIDEO_DETAILS_SUCCESS, VIDEO_LIST_FAIL, VIDEO_LIST_REQUEST, VIDEO_LIST_SUCCESS, VIDEO_UPLOAD_FAIL, VIDEO_UPLOAD_REQUEST, VIDEO_UPLOAD_SUCCESS } from "../constants/videoConstants";
+import { SUCCESSVID_CHANGE, VIDEO_DETAILS_FAIL, VIDEO_DETAILS_REQUEST, VIDEO_DETAILS_SUCCESS,
+  VIDEO_DISLIKE_FAIL,
+  VIDEO_DISLIKE_REQUEST,
+  VIDEO_DISLIKE_SUCCESS,
+  VIDEO_LIKE_FAIL,
+  VIDEO_LIKE_REQUEST,
+  VIDEO_LIKE_SUCCESS,
+   VIDEO_LIST_FAIL, VIDEO_LIST_REQUEST, VIDEO_LIST_SUCCESS, VIDEO_UPLOAD_FAIL, 
+   VIDEO_UPLOAD_REQUEST, VIDEO_UPLOAD_SUCCESS } from "../constants/videoConstants";
 
 const uploadVideo = (title,video,description,thumbnail) => async (dispatch, getState) => {
     try {
@@ -50,9 +58,43 @@ const detailsVideo = (videoId) => async (dispatch) => {
   }
 };
 
+const likeVideo = (videoId) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: VIDEO_LIKE_REQUEST});
+    const {userSignin: { userInfo }} = getState();
+        const { data } = await axios.put(`/api/videos/like`,{videoId},{
+          headers: {
+            Authorization: 'Bearer ' + userInfo.token,
+          },
+        });
+    dispatch({ type: VIDEO_LIKE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: VIDEO_LIKE_FAIL, payload: error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message, });
+  }
+};
+
+const dislikeVideo = (videoId) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: VIDEO_DISLIKE_REQUEST});
+    const {userSignin: { userInfo }} = getState();
+        const { data } = await axios.put('/api/videos/dislike',{videoId}, {
+          headers: {
+            Authorization: 'Bearer ' + userInfo.token,
+          },
+        });
+    dispatch({ type: VIDEO_DISLIKE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: VIDEO_DISLIKE_FAIL, payload: error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message, });
+  }
+};
+
 const successVidchange = () => async(dispatch) => {
   dispatch({ type: SUCCESSVID_CHANGE, payload:false});
 }
 
 
-  export {uploadVideo, ListVideos, detailsVideo, successVidchange} 
+  export {uploadVideo, ListVideos, detailsVideo, successVidchange, likeVideo, dislikeVideo} 

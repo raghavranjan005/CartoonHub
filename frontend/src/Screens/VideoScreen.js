@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import {signin} from '../actions/userActions';
 import MessageBox from '../components/MessageBox';
 import LoadingBox from '../components/LoadingBox';
-import { detailsVideo } from '../actions/videoActions';
+import { detailsVideo, dislikeVideo, likeVideo } from '../actions/videoActions';
 import moment from 'moment';
 
 function getIST(dateStr) {
@@ -37,13 +37,38 @@ function VideoScreen(props){
     const videoDetails = useSelector((state) => state.videoDetails);
     const { video, loading, error } = videoDetails;
 
+    const videoLikes = useSelector((state) => state.videoLike);
+    const { likes, loading:LoadingLike, error:errorLike } = videoLikes;
+
+    const videoDislikes = useSelector((state) => state.videoDislike);
+    const { dislikes, loading:LoadingDislike, error:errorDislike } = videoDislikes;
+
+    const increaseLike = (id)=>{
+        if(userInfo)
+            dispatch(likeVideo(id));
+        else{
+            alert("You must Sign-In")
+        }
+      };
+
+      const decreaseLike = (id)=>{
+        if(userInfo)
+            dispatch(dislikeVideo(id));
+        else{
+            alert("You must Sign-In")
+        }
+      };
+
+
+      
     useEffect(() => {
 
         dispatch(detailsVideo(props.match.params.id));
         return () => {
           //
         };
-      }, []);
+      }, [LoadingLike, LoadingDislike]);
+
 
     return (
         <>
@@ -57,9 +82,9 @@ function VideoScreen(props){
             <h1>{video.title}</h1>
             <p className="views">{video.views} views &#8226; {moment(getIST(video.createdAt)).format('ll')}
             <i className="border-bottom">
-                <i className="fa fa-thumbs-o-up"> {video.likes}&nbsp;&nbsp;</i>
+                <i className="fa fa-thumbs-o-up" onClick={() => increaseLike(video._id)}> {video.likes}&nbsp;&nbsp;</i>
                 
-             <i className="fa fa-thumbs-o-down"> {video.dislikes}</i>&nbsp;&nbsp;
+             <i className="fa fa-thumbs-o-down" onClick={() => decreaseLike(video._id)}> {video.dislikes}</i>&nbsp;&nbsp;
              </i>
              <i className="fa fa-share" onClick={() => copy("http://localhost:3000/video/"+video._id)}></i> SHARE
              

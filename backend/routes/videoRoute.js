@@ -2,7 +2,7 @@ import express from 'express';
 import User from '../models/userModel';
 import Video from '../models/videoModel';
 import bcrypt, { compareSync } from 'bcryptjs';
-import { getToken, isAuth } from '../util';
+import { isAuth } from '../util';
 
 const router = express.Router();
 
@@ -33,6 +33,46 @@ router.get('/',async(req,res)=>{
     }
   
   });
+
+  router.put('/like',isAuth, async (req, res) => {
+    try {
+          const video = await Video.findOne({ _id: req.body.videoId });
+          if (video) {
+            video.likes = video.likes + 1;
+            const updatedVideo = await video.save();
+
+            const user = await User.findById(req.user._id)
+            const userLikedVideos = user.likedVideos;
+            userLikedVideos.push(updatedVideo._id);
+            await user.save();
+            const updatedLikes = updatedVideo.likes
+            return res.send({updatedLikes});
+          } else {
+            return res.status(404).send({ message: 'Video Not Found.' });
+          } 
+    } catch (error) {
+      return res.send(error)
+    }
+  
+  });
+
+  router.put('/dislike', isAuth, async (req, res) => {
+    try {
+          const video = await Video.findOne({ _id: req.body.videoId });
+          if (video) {
+            video.dislikes = video.dislikes + 1;
+            const updated = await video.save();
+            const TotaldisLikes = updated.dislikes
+            return res.send({TotaldisLikes});
+          } else {
+            return res.status(404).send({ message: 'Video Not Found.' });
+          } 
+    } catch (error) {
+      return res.send(error)
+    }
+  
+  });
+
 
     
 

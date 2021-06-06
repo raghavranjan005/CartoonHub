@@ -19,11 +19,9 @@ const isAuth = (req, res, next) => {
   // console.log(token);
   if (token) {
     const onlyToken = token.slice(7, token.length);
-    // console.log(onlyToken);
     jwt.verify(onlyToken, config.JWT_SECRET, (err, decode) => {
       if (err) {
-        // console.log(decode);
-        return res.status(401).send({ message: 'Invalid Token' });
+        return res.status(401).send({ message: 'You must sign-In for this' });
       }
       req.user = decode;
       next();
