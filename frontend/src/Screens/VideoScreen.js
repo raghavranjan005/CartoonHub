@@ -90,6 +90,20 @@ function VideoScreen(props){
              
              </p>
             </div>
+            <div className="video-deails-description">
+            <div className="video-title-2">
+                <img src={video.thumbnail} className="avtar"></img> &nbsp;
+                  {video.title}
+            </div>
+            <div className="description">
+                  {video.description}
+                </div>
+                </div>
+
+            <div className="comment">
+            <img src={video.thumbnail} className="avtar"></img> &nbsp;
+            <input type="text" placeholder="Add a public comment..." className="comment-input"></input>
+            </div>
         </div>
         </div>
         ):<></>}

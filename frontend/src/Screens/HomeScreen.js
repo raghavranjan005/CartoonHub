@@ -6,6 +6,19 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import SearchBox from '../components/SearchBox';
 import { ListVideos } from '../actions/videoActions';
+import moment from 'moment';
+
+function getIST(dateStr) {
+    var theDate = new Date(Date.parse(
+      dateStr));
+
+      var IST = theDate.toLocaleString();
+
+      return IST;
+    
+  }
+
+
 function HomeScreen(props) {
 
   const videoList = useSelector((state) => state.videoList);
@@ -49,9 +62,14 @@ function HomeScreen(props) {
                   />
                 </Link>
                 <div className="video-title">
+                <img src={video.thumbnail} className="avtar"></img> &nbsp;
                   <Link to={'/video/' + video._id}>{video.title}</Link>
                 </div>
-                <div className="video-user">{video.user.name}</div>
+               
+                <div className="video-user">
+                  {video.user.name}<br></br>{video.views} views &#8226;&nbsp;
+                 {moment(getIST(video.createdAt)).format('ll')}</div>
+              
 
               </div>
             </li>
