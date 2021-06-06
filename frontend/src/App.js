@@ -7,6 +7,7 @@ import SigninScreen from './Screens/SigninScreen';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from './actions/userActions';
 import SearchBox from './components/SearchBox';
+import VideoScreen from './Screens/VideoScreen';
 
 
 const openMenu = () => {
@@ -103,6 +104,7 @@ function App(props) {
             <Route path="/upload" component={UploadScreen}/>
             <Route path="/register" component={RegisterScreen}/>
             <Route path="/signin" component={SigninScreen}/>
+            <Route path="/video/:id" component={VideoScreen} />
             
             
             

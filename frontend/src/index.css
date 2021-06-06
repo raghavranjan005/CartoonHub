@@ -445,7 +445,6 @@ button.close-sidebar {
 
 .video-thumbnail:hover {
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
-  transform: scale(1.03);
 }
 .product-ratings {
   margin-bottom: 1rem;
@@ -516,7 +515,7 @@ button.close-sidebar {
   margin-top: 10px;
 }
 
-.details-image {
+.details-video {
   /* flex: 2 1 60 rem; */
   /* flex: 0 50%; */
   flex-grow: 1;
@@ -526,8 +525,8 @@ button.close-sidebar {
   padding: auto;
 }
 
-.sliderimg {
-  max-width: 40rem;
+.video-player {
+  max-width: 90rem;
   max-height: auto;
   /* overflow: hidden; */
   object-fit: fill;
