@@ -111,7 +111,7 @@ function VideoScreen(props){
                 </div>
 
             <div className="comment">
-            <img src={userInfo.image} className="avtar"></img> &nbsp;
+            {userInfo &&<img src={userInfo.image} className="avtar"></img>} &nbsp;
             <form onSubmit={commentSubmit}>
             <input type="text" placeholder="Add a public comment..." className="comment-input" required
             onChange={(e) => setComment(e.target.value)}></input>

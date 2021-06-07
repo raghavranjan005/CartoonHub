@@ -25,6 +25,11 @@ body {
   
 }
 
+.fa-thumbs-o-up:hover{
+  cursor: pointer;
+  
+}
+
 .fa-share{
   font-size:2.3rem;
   display: inline-block;
