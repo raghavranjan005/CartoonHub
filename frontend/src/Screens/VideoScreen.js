@@ -103,7 +103,7 @@ function VideoScreen(props){
             <div className="video-deails-description">
             <div className="video-title-2">
                 <img src={video.user.image} className="avtar"></img> &nbsp;
-                  {video.title}
+                  {video.user.name}
             </div>
             <div className="description">
                   {video.description}
