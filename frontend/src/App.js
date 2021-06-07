@@ -83,7 +83,7 @@ function App(props) {
         </div>
         <ul className="categories">
         <li>
-        <strong>Shopping categories</strong>
+        <strong></strong>
         </li>
           {/* <Link to = "/category/saree">saree</Link>
           <Link to = "/category/suit">suit</Link> */}
