@@ -50,8 +50,9 @@ function App(props) {
           <li>
           {userInfo ? (
               <div className="dropdown">
-                <Link to="/dashboard">
-                  {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
+                <Link to="/upload">
+                <img src={userInfo.image} className="avtar-2"></img>
+                 <i className="fa fa-caret-down"></i>{' '}
                 </Link>
                 <ul className="dropdown-content">
                   <li>

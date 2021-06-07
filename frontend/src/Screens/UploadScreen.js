@@ -122,13 +122,25 @@ function UploadScreen(props) {
         <div className="row center large">
             <h1 className="large"> Dashboard</h1>
         </div>
-
+        <div className="row">
+        <div className="col-2 leftpad">
         <div class="card-box">
 
           <img className="upload-cartoon" src="https://cartoonhub.s3.ap-south-1.amazonaws.com/upload-video.png"></img>
           <p className="card-box-p">Create, Upload and publish a video<br></br> to get started.</p>
 
           <button class="open-button" onClick={() => openForm()}>UPLOAD VIDEO</button>
+        </div>
+        </div>
+        <div className="col-2 leftpad">
+        <div className="profile-name">
+        <img src={userInfo.image} className="avtar-3"></img> &nbsp;
+                  {userInfo.name}
+          <p className="dashboard-email">{userInfo.email}</p>
+          </div>
+          <button className="open-button-3">My Videos</button>
+          <button className="open-button-3"><i className="fa fa-thumbs-up"></i> Liked videos </button>
+        </div>
         </div>
 
         <div class="form-popup" id="myForm">
@@ -190,6 +202,8 @@ function UploadScreen(props) {
 
               </form>
       </div>
+
+
 
 
 

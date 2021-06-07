@@ -439,6 +439,14 @@ button.close-sidebar {
   padding-top: 4%;
 }
 
+.profile-name {
+  font-size: 3rem;
+  padding-left:1%;
+  font-weight: bold;
+  padding-top: 4%;
+  margin-top:-280px
+}
+
 .comment-title {
   font-size: 1.3rem;
   padding-left:1%;
@@ -1181,6 +1189,17 @@ input[type="checkbox"] {
   /* margin-left: 82%; */
 }
 
+.open-button-3 {
+  background-color: rgb(29, 101, 255);
+  color:white;
+  padding-left:2rem;
+  padding-right:2rem;
+  margin-top:8rem;
+  margin-left:4rem;
+  /* margin-left: 82%; */
+}
+
+
 .open-button:hover{
   box-shadow: 2px 2px 2px 2px rgb(255, 71, 71);
   /* margin-left: 82%; */
@@ -1497,6 +1516,26 @@ input[type="file"]{
   display: inline-block;
 }
 
+
+.avtar-2{
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-top:-5px;
+  padding-bottom: 5px;
+}
+
+.avtar-3{
+  vertical-align: middle;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 2px dotted black;
+}
+
 .description{
   margin-top:3rem;
   margin-left:5rem;
@@ -1536,4 +1575,16 @@ input[type="file"]{
 .comment-button:hover{
   background-color: gray;
   color:white
+}
+
+.profile-dashboard{
+  display: inline-block;
+  margin-top:0
+}
+
+.dashboard-email{
+  font-size: 2rem;
+  color:gray;
+  margin-left:20rem;
+  margin-top:-6rem;
 }
