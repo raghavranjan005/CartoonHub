@@ -66,6 +66,39 @@ router.post('/register', async (req, res) => {
     }
       
     });
+
+
+
+    router.get('/myvideo',isAuth, async(req,res)=>{
+      try {
+        
+        const user = await User.findById(req.user._id).populate('videos');
+        if(user)
+        {
+          const myVideos = user.videos;
+          return res.send(myVideos);
+        }
+        else
+          return res.status(404).send({message:"No Video Found"});
+      } catch (error) {
+       return  res.send(error)
+      }
+    })
+
+    router.get('/likedvideo',isAuth, async(req,res)=>{
+      try {
+        const user = await User.findById(req.user._id).populate('likedVideos');
+        if(user)
+        {
+          const likedVideos = user.likedVideos;
+          return res.send(likedVideos);
+        }
+        else
+          return res.status(404).send({message:"No Video Found"});
+      } catch (error) {
+       return  res.send(error)
+      }
+    })
     
 
 export default router;

@@ -1,7 +1,7 @@
 import Axios from "axios";
 import axios from 'axios';
 import Cookie from 'js-cookie';
-import { ADD_COMMENT_FAIL, ADD_COMMENT_SUCCESS, SUCCESSVID_CHANGE, VIDEO_DETAILS_FAIL, VIDEO_DETAILS_REQUEST, VIDEO_DETAILS_SUCCESS,
+import { ADD_COMMENT_FAIL, ADD_COMMENT_SUCCESS, LIKED_VIDEO_LIST_FAIL, LIKED_VIDEO_LIST_REQUEST, LIKED_VIDEO_LIST_SUCCESS, MY_VIDEO_LIST_FAIL, MY_VIDEO_LIST_REQUEST, MY_VIDEO_LIST_SUCCESS, SUCCESSVID_CHANGE, VIDEO_DETAILS_FAIL, VIDEO_DETAILS_REQUEST, VIDEO_DETAILS_SUCCESS,
   VIDEO_DISLIKE_FAIL,
   VIDEO_DISLIKE_REQUEST,
   VIDEO_DISLIKE_SUCCESS,
@@ -35,13 +35,49 @@ const uploadVideo = (title,video,description,thumbnail) => async (dispatch, getS
     dispatch({type:VIDEO_LIST_REQUEST});
     try {
       const {data} = await axios.get('/api/videos');
-      console.log(data)
       dispatch({type:VIDEO_LIST_SUCCESS,payload:data});
     } catch (error) {
       dispatch({ type: VIDEO_LIST_FAIL, payload: error.response && error.response.data.message
         ? error.response.data.message
         : error.message, });
     }
+};
+
+const ListMyVideos =()=>async(dispatch,getState)=>{
+
+  dispatch({type:MY_VIDEO_LIST_REQUEST});
+  try {
+    console.log("lala")
+    const {userSignin: { userInfo }} = getState();
+    const { data } = await axios.get(`/api/users/myvideo`,{
+      headers: {
+        Authorization: 'Bearer ' + userInfo.token,
+      },
+    });
+    dispatch({type:MY_VIDEO_LIST_SUCCESS,payload:data});
+  } catch (error) {
+    dispatch({ type: MY_VIDEO_LIST_FAIL, payload: error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message, });
+  }
+};
+
+const ListLikedVideos =()=>async(dispatch,getState)=>{
+
+  dispatch({type:LIKED_VIDEO_LIST_REQUEST});
+  try {
+    const {userSignin: { userInfo }} = getState();
+    const { data } = await axios.get(`/api/users/likedvideo`,{
+      headers: {
+        Authorization: 'Bearer ' + userInfo.token,
+      },
+    });
+    dispatch({type:LIKED_VIDEO_LIST_SUCCESS,payload:data});
+  } catch (error) {
+    dispatch({ type: LIKED_VIDEO_LIST_FAIL, payload: error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message, });
+  }
 };
 
 
@@ -116,4 +152,4 @@ const successVidchange = () => async(dispatch) => {
 
 
   export {uploadVideo, ListVideos, detailsVideo, successVidchange, 
-    likeVideo, dislikeVideo,addComments} 
+    likeVideo, dislikeVideo,addComments, ListLikedVideos, ListMyVideos} 

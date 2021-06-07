@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from './actions/userActions';
 import SearchBox from './components/SearchBox';
 import VideoScreen from './Screens/VideoScreen';
+import MyVideoScreen from './Screens/MyVideoScreen';
+import LikedVideoScreen from './Screens/LikedVideoScreen';
 
 
 const openMenu = () => {
@@ -105,6 +107,8 @@ function App(props) {
             <Route path="/upload" component={UploadScreen}/>
             <Route path="/register" component={RegisterScreen}/>
             <Route path="/signin" component={SigninScreen}/>
+            <Route path="/myvideos" component={MyVideoScreen}/>
+            <Route path="/likedvideos" component={LikedVideoScreen}/>
             <Route path="/video/:id" component={VideoScreen} />
             
             

@@ -1,5 +1,5 @@
 import Cookie from 'js-cookie';
-import { ADD_COMMENT_FAIL, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, SUCCESSVID_CHANGE, VIDEO_DETAILS_FAIL, VIDEO_DETAILS_REQUEST, VIDEO_DETAILS_SUCCESS, VIDEO_DISLIKE_FAIL, VIDEO_DISLIKE_REQUEST, VIDEO_DISLIKE_SUCCESS, VIDEO_LIKE_FAIL, VIDEO_LIKE_REQUEST, VIDEO_LIKE_SUCCESS, VIDEO_LIST_FAIL, VIDEO_LIST_REQUEST, VIDEO_LIST_SUCCESS, VIDEO_UPLOAD_FAIL, VIDEO_UPLOAD_REQUEST, VIDEO_UPLOAD_SUCCESS } from '../constants/videoConstants';
+import { ADD_COMMENT_FAIL, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, LIKED_VIDEO_LIST_FAIL, LIKED_VIDEO_LIST_REQUEST, LIKED_VIDEO_LIST_SUCCESS, MY_VIDEO_LIST_FAIL, MY_VIDEO_LIST_REQUEST, MY_VIDEO_LIST_SUCCESS, SUCCESSVID_CHANGE, VIDEO_DETAILS_FAIL, VIDEO_DETAILS_REQUEST, VIDEO_DETAILS_SUCCESS, VIDEO_DISLIKE_FAIL, VIDEO_DISLIKE_REQUEST, VIDEO_DISLIKE_SUCCESS, VIDEO_LIKE_FAIL, VIDEO_LIKE_REQUEST, VIDEO_LIKE_SUCCESS, VIDEO_LIST_FAIL, VIDEO_LIST_REQUEST, VIDEO_LIST_SUCCESS, VIDEO_UPLOAD_FAIL, VIDEO_UPLOAD_REQUEST, VIDEO_UPLOAD_SUCCESS } from '../constants/videoConstants';
 
 function videoUploadReducer(state= {}, action) {
     switch (action.type) {
@@ -24,6 +24,33 @@ function videoUploadReducer(state= {}, action) {
       case VIDEO_LIST_SUCCESS:
         return { loading: false, videos: action.payload };
       case VIDEO_LIST_FAIL:
+        return { loading: false, error: action.payload };
+      default:
+        return state;
+    }
+  }
+
+
+  function myVideoListReducer(state = { videos: [] }, action) {
+    switch (action.type) {
+      case MY_VIDEO_LIST_REQUEST:
+        return { loading: true, videos: [] };
+      case MY_VIDEO_LIST_SUCCESS:
+        return { loading: false, videos: action.payload };
+      case MY_VIDEO_LIST_FAIL:
+        return { loading: false, error: action.payload };
+      default:
+        return state;
+    }
+  }
+
+  function likedVideoListReducer(state = { videos: [] }, action) {
+    switch (action.type) {
+      case LIKED_VIDEO_LIST_REQUEST:
+        return { loading: true, videos: [] };
+      case LIKED_VIDEO_LIST_SUCCESS:
+        return { loading: false, videos: action.payload };
+      case LIKED_VIDEO_LIST_FAIL:
         return { loading: false, error: action.payload };
       default:
         return state;
@@ -85,4 +112,4 @@ function videoUploadReducer(state= {}, action) {
   }
 
   export {videoUploadReducer, videoListReducer, videoDetailsReducer,
-     videoLikeReducer, videoDislikeReducer, addCommentVidReducer}
+     videoLikeReducer, videoDislikeReducer, addCommentVidReducer, myVideoListReducer,likedVideoListReducer}
