@@ -5,6 +5,7 @@ import aws from 'aws-sdk';
 import config from '../config';
 import { isAuth } from '../util';
 import Video from '../models/videoModel'
+import User from '../models/userModel';
 
 
 const router = express.Router();
@@ -49,6 +50,11 @@ router.post('/',isAuth, async (req, res) => {
 
       const newVideo = await uploadVideo.save();
       if (newVideo) {
+        const user = await User.findById(req.user._id)
+        const userVideos = user.videos;
+        userVideos.push(newVideo._id);
+        await user.save();
+
       return res
         .status(200)
         .send({ message: 'New Video Uploaded', data: newVideo });

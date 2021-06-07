@@ -62,7 +62,7 @@ function HomeScreen(props) {
                   />
                 </Link>
                 <div className="video-title">
-                <img src={video.thumbnail} className="avtar"></img> &nbsp;
+                <img src={video.user.image} className="avtar"></img> &nbsp;
                   <Link to={'/video/' + video._id}>{video.title}</Link>
                 </div>
                

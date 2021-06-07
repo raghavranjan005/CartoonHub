@@ -84,7 +84,7 @@ function VideoScreen(props){
         <>
         {loading && <LoadingBox></LoadingBox>} 
         {error && <MessageBox variant="danger">{error}</MessageBox>}
-        {video?(    
+        {video && video.user?(    
         <div className="row top">
           <div className = "details-video col-2">    
             <video className="video-player" src={video.videoURL} controls></video>
@@ -102,7 +102,7 @@ function VideoScreen(props){
             </div>
             <div className="video-deails-description">
             <div className="video-title-2">
-                <img src={video.thumbnail} className="avtar"></img> &nbsp;
+                <img src={video.user.image} className="avtar"></img> &nbsp;
                   {video.title}
             </div>
             <div className="description">
@@ -111,7 +111,7 @@ function VideoScreen(props){
                 </div>
 
             <div className="comment">
-            <img src={video.thumbnail} className="avtar"></img> &nbsp;
+            <img src={userInfo.image} className="avtar"></img> &nbsp;
             <form onSubmit={commentSubmit}>
             <input type="text" placeholder="Add a public comment..." className="comment-input" required
             onChange={(e) => setComment(e.target.value)}></input>
@@ -127,7 +127,7 @@ function VideoScreen(props){
                         {video.comments.map((comm) => (
                         <li key={comm._id}>
                         
-                       <div className="comment-title"><img src={video.thumbnail} className="avtar"></img> &nbsp;&nbsp;
+                       <div className="comment-title"><img src={comm.userImage} className="avtar"></img> &nbsp;&nbsp;
                        {comm.name}</div>
                         <div className="comment-user">{comm.comment}</div>
                              </li>

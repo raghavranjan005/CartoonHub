@@ -54,8 +54,7 @@ router.post('/register', async (req, res) => {
             _id: signinUser.id,
             name: signinUser.name,
             email: signinUser.email,
-            mobile:signinUser.mobile,
-            isAdmin: signinUser.isAdmin,
+            image: signinUser.image,
             token: getToken(signinUser),
             });
           }
