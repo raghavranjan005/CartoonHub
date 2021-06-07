@@ -62,7 +62,6 @@ function MyVideoScreen(props) {
                   />
                 </Link>
                 <div className="video-title">
-                <img src={video.user.image} className="avtar"></img> &nbsp;
                   <Link to={'/video/' + video._id}>{video.title}</Link>
                 </div>
                

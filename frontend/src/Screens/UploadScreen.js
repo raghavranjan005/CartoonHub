@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Link } from 'react-router-dom';
 import axios from 'axios';
 import LoadingBox from '../components/LoadingBox';
 import CustomLoadingBox from '../components/CustomLoadingBox';
@@ -138,8 +138,8 @@ function UploadScreen(props) {
                   {userInfo.name}
           <p className="dashboard-email">{userInfo.email}</p>
           </div>
-          <button className="open-button-3">My Videos</button>
-          <button className="open-button-3"><i className="fa fa-thumbs-up"></i> Liked videos </button>
+          <button className="open-button-3" onClick={() => props.history.push('/myvideos')} >My Videos</button>
+          <button className="open-button-3" onClick={() => props.history.push('/likedvideos')}><i className="fa fa-thumbs-up"></i> Liked videos </button>
         </div>
         </div>
 

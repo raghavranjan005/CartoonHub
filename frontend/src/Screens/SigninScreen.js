@@ -50,7 +50,13 @@ function SigninScreen(props){
 
 
     return <div className="form">
+        <div className="row">
         <form onSubmit={submitHandler}>
+        
+        <div className="col-2 leftpad">
+            <img src="https://cartoonhub.s3.ap-south-1.amazonaws.com/Copy+of+Cartoon+HUB.png" className="signinlogo"></img>
+        </div>
+        <div className="col-2 leftpad">
             <ul className = "form-container">
                 <li>
                     <h2> Sign-In</h2>
@@ -90,8 +96,11 @@ function SigninScreen(props){
 
 
             </ul>
-
+                </div>
+            
         </form>
+        </div>
+
     </div>
 }
 

@@ -77,14 +77,17 @@ function RegisterScreen(props){
 
     return <div className="form">
         <form onSubmit={submitHandler}>
-            <ul className = "form-container">
+        <div className="col-2 leftpad">
+            <img src="https://cartoonhub.s3.ap-south-1.amazonaws.com/Copy+of+Cartoon+HUB.png" className="signinlogo"></img>
+        </div>
+            <ul className = "form-container-register">
                 <li>
                     <h2> Create a CartoonHub Account</h2>
                     </li>
-                    <li>
+                    
                     {loading && <LoadingBox ></LoadingBox>}
                     {error && <MessageBox variant="danger">{error}</MessageBox>}
-                    </li>
+                   
 
                     <li>
                     <label htmlFor="name">

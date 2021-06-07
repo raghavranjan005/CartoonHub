@@ -763,9 +763,24 @@ button.close-sidebar {
   flex-direction: column;
   width: 32rem;
   padding: 2rem;
-  border: 0.1rem #c0c0c0 solid;
+  border: 0.1rem red solid;
   border-radius: 0.5rem;
   list-style-type: none;
+  margin-top:-47rem;
+  margin-left:50rem;
+}
+.form-container-register {
+  display: flex;
+  flex-direction: column;
+  width: 32rem;
+  padding: 2rem;
+  padding-top:1rem;
+  padding-bottom:1rem;
+  border: 0.1rem red solid;
+  border-radius: 0.5rem;
+  list-style-type: none;
+  margin-top:-53rem;
+  margin-left:50rem;
 }
 .form-container li {
   display: flex;
@@ -773,6 +788,14 @@ button.close-sidebar {
   margin-bottom: 1rem;
   margin-top: 1rem;
 }
+
+.form-container-register li {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
 input {
   padding: 1rem;
   border: 0.1rem #c0c0c0 solid;
@@ -1587,4 +1610,13 @@ input[type="file"]{
   color:gray;
   margin-left:20rem;
   margin-top:-6rem;
+}
+
+.signinlogo{
+  height:400px;
+  width:400px;
+  margin-left:-10rem;
+  margin-top: 13rem;
+  display: inline-block;
+  border-radius: 30px;
 }
